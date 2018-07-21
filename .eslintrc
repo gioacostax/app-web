@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+
+  "extends": [
+    "airbnb"
+  ],
+
+  "env": {
+    "browser": true
+  },
+
+  "globals": {
+    "React": true,
+    "ReactDOM": true
+  },
+
+  "rules": {
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": [ "src/" ]
+      }
+    ],
+    "comma-dangle": 0
+  }
+}

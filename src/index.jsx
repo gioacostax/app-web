@@ -5,6 +5,19 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import App from 'src/react/app';
+import { Provider } from 'react-redux';
+import store from 'src/react/redux';
+import App from 'src/view/app';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+);
+
+/* devblock:start */
+/* eslint import/no-extraneous-dependencies: 0 */
+// React Hot Loader
+require('react-hot-loader').hot(module)(App);
+/* devblock:end */

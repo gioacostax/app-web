@@ -18,9 +18,14 @@
     "import/no-unresolved": [
       2,
       {
-        "ignore": [ "src/" ]
+        "ignore": [ "^src/" ]
       }
     ],
-    "comma-dangle": 0
+    "react/destructuring-assignment": "never",
+    "react/jsx-one-expression-per-line": 0,
+    "react/prop-types": 0,
+    "import/order": 0,
+    "comma-dangle": 0,
+    "no-plusplus": 0
   }
 }

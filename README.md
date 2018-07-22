@@ -27,6 +27,7 @@ npm run build
 - Next Generation Javascript (Babel)
 - Templating (Jade)
 - Javascript Linter (Eslint)
+- State Container (Redux)
 
 ----------
 #### License MIT

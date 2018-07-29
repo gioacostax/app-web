@@ -32,7 +32,7 @@ module.exports = (env, argv) => {
 
     output: {
       path: DIR_BUILD,
-      filename: '[name].js?[hash]'
+      filename: DEV ? '[name].js?[hash]' : '[name].[hash].js'
     },
 
     resolve: {
@@ -71,6 +71,16 @@ module.exports = (env, argv) => {
             'css-loader', // translates CSS into CommonJS
             'sass-loader' // compiles Sass to CSS
           ]
+        },
+        {
+          test: /\.(otf|woff|woff2|ttf|eot|svg|png|jpe?g|gif|ico)$/,
+          use: {
+            loader: 'file-loader',
+            options: {
+              name: DEV ? '[name].[ext]?[hash]' : '[name].[hash].[ext]',
+              outputPath: 'assets/'
+            }
+          }
         }
       ],
     },

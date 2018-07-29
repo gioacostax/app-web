@@ -5,9 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './styles/index.scss';
+
 import { Provider } from 'react-redux';
-import store from 'src/react/redux';
-import App from 'src/view/app';
+import store from 'src/lib/redux';
+import App from 'src/app';
 
 ReactDOM.render(
   <Provider store={store}>

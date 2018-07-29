@@ -8,8 +8,8 @@
 import { createStore as reduxCreateStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
-import reducers from 'src/reducers';
 import connect from './connect';
+import reducers from 'src/reducers';
 
 /* devblock:start */
 /* eslint import/no-extraneous-dependencies: 0 */

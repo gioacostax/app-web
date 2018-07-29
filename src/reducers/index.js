@@ -6,14 +6,14 @@
  */
 
 import { combineReducers } from 'redux';
-import reducerCounter, { actions as counter } from './counter';
+import reducerDatabase, { actions as database } from './database';
 
 export {
   // Add actions here
-  counter
+  database
 };
 
 export default combineReducers({
   // Add reducers here
-  counter: reducerCounter
+  database: reducerDatabase
 });

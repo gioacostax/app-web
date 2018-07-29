@@ -1,0 +1,36 @@
+/**
+ * Copyright © 2015-2018 gioacostax. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+ .app-loader {
+  height: 16px;
+
+  > div {
+    display: inline-block;
+    width: 3px;
+    height: 100%;
+    margin-left: 1px;
+    animation: delay .8s infinite ease-in-out;
+  }
+
+  .bar {
+    &.b2 { animation-delay: -.7s; }
+    &.b3 { animation-delay: -.6s; }
+    &.b4 { animation-delay: -.5s; }
+    &.b5 { animation-delay: -.4s; }
+    &.b6 { animation-delay: -.3s; }
+  }
+}
+
+@keyframes delay {
+  0%, 40%, 100% {
+    transform: scaleY(.05);
+  }
+
+  20% {
+    transform: scaleY(1);
+  }
+}

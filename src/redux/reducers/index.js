@@ -6,14 +6,10 @@
  */
 
 import { combineReducers } from 'redux';
-import reducerDatabase, { actions as database } from './database';
+import database from './database';
 
-export {
-  // Add actions here
-  database
-};
+export { actions as database } from './database';
 
 export default combineReducers({
-  // Add reducers here
-  database: reducerDatabase
+  database
 });

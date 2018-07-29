@@ -6,14 +6,11 @@
  */
 
 import './styles.scss';
+
+import Redux, { database } from 'src/redux';
 import { Loader } from 'src/components';
 
-/* ==================== REDUX =================== */
-import { connect } from 'src/lib/redux';
-import { database } from 'src/reducers';
-
-@connect({ database })
-/* ==================== REDUX ==================== */
+@Redux({ database })
 export default class App extends React.Component {
   constructor(props) {
     super(props);

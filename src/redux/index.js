@@ -8,8 +8,8 @@
 import { createStore as reduxCreateStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
-import connect from './connect';
-import reducers from 'src/reducers';
+import ReduxConnect from './connect';
+import reducers from 'src/redux/reducers';
 
 /* devblock:start */
 /* eslint import/no-extraneous-dependencies: 0 */
@@ -30,11 +30,12 @@ const store = reduxCreateStore((state, action) => reducers(state, action),
 /* devblock:start */
 /* eslint global-require: 0 */
 if (module.hot) {
-  module.hot.accept('src/reducers/index', () => {
-    store.replaceReducer(require('src/reducers/index').default);
+  module.hot.accept('src/redux/reducers/index', () => {
+    store.replaceReducer(require('src/redux/reducers/index').default);
   });
 }
 /* devblock:end */
 
-export { connect };
-export default store;
+export { store };
+export * from 'src/redux/reducers';
+export default ReduxConnect;

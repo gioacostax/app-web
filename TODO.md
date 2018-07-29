@@ -1,9 +1,11 @@
 # Todo list
 
-## High priority
+## Features
 - Local Store
+- Routers
+- Stop Fetching (example)
 
-## Low priority
-- combine props state and actions like this.props.redux.actions, this props.redux.state
-- webpack config
+## Improvements
+- Combine props state and actions like this.props.redux.actions, this props.redux.state
+- Webpack config
 - Uglify styles inside html

@@ -29,18 +29,20 @@ const stateToProps = reducers => (state) => {
  * Require a Object with reducers
  *
  * Example: { reducer1, reducer2, ...}
- * Returns in component props something like props.<name-reducer>.actions.<action>
+ * Returns in component props something like props.<name-reducer>.<action>
  */
 const actionsToProps = reducers => (dispatch) => {
-  const props = { };
+  const props = {};
   const keys = Object.keys(reducers);
 
   for (let x = 0; x < keys.length; x++) {
     const actions = Object.keys(reducers[keys[x]]);
-    props[keys[x]] = { actions: {} };
 
     for (let y = 0; y < actions.length; y++) {
-      props[keys[x]].actions[actions[y]] = bindAction(reducers[keys[x]][actions[y]], dispatch);
+      props[keys[x]] = {
+        ...props[keys[x]],
+        [actions[y]]: bindAction(reducers[keys[x]][actions[y]], dispatch)
+      };
     }
   }
   return props;
@@ -54,7 +56,7 @@ const mergeProps = () => (state, actions) => {
   const keys = Object.keys(state);
 
   for (let x = 0; x < keys.length; x++) {
-    props[keys[x]] = { state: state[keys[x]].state, actions: actions[keys[x]].actions };
+    props[keys[x]] = { state: state[keys[x]].state, ...actions[keys[x]] };
   }
 
   return props;

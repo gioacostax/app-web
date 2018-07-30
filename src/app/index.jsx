@@ -21,8 +21,8 @@ export default class App extends React.Component {
 
     this.getData = () => {
       this.setState({ result: '[app-Web] Cargando...' });
-      this.props.counter.actions.add(1);
-      this.props.database.actions.getData('/manifest.json').then((res) => {
+      this.props.counter.add(1);
+      this.props.database.getData('/manifest.json').then((res) => {
         this.setState({ result: `[app-Web] Last action: ${res.type} OK.` });
       }).catch((err) => {
         this.setState({ result: `[app-Web] Error: ${err.message}` });

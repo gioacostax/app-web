@@ -7,10 +7,10 @@
 
 import './styles.scss';
 
-import Redux, { database } from 'src/redux';
+import Redux, { database, counter } from 'src/redux';
 import { Loader } from 'src/components';
 
-@Redux({ database })
+@Redux({ database, counter })
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +21,8 @@ export default class App extends React.Component {
 
     this.getData = () => {
       this.setState({ result: '[app-Web] Cargando...' });
-      this.props.actions.database.getData('/manifest.json').then((res) => {
+      this.props.counter.actions.add(1);
+      this.props.database.actions.getData('/manifest.json').then((res) => {
         this.setState({ result: `[app-Web] Last action: ${res.type} OK.` });
       }).catch((err) => {
         this.setState({ result: `[app-Web] Error: ${err.message}` });
@@ -37,13 +38,13 @@ export default class App extends React.Component {
         </div>
         <div id="app-body">
           <h3>REDUX (database.state)</h3>
-          <div className="state-box">{JSON.stringify(this.props.state.database)}</div>
+          <div className="state-box">{JSON.stringify(this.props.database.state)}</div>
           {
-            this.props.state.database.loading
+            this.props.database.state.loading
               ? <Loader color="#888" />
               : (
                 <button className="app-button" type="button" onClick={this.getData}>
-                  FETCH JSON
+                  {`GET DATA (${this.props.counter.state.count})`}
                 </button>
               )
           }

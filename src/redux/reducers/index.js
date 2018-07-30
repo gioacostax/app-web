@@ -7,9 +7,12 @@
 
 import { combineReducers } from 'redux';
 import database from './database';
+import counter from './counter';
 
 export { actions as database } from './database';
+export { actions as counter } from './counter';
 
 export default combineReducers({
-  database
+  database,
+  counter
 });

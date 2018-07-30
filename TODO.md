@@ -4,8 +4,10 @@
 - Local Store
 - Routers
 - Stop Fetching (example)
+- Editable fetch origin (example)
 
 ## Improvements
-- Combine props state and actions like this.props.redux.actions, this props.redux.state
+- Improve 'connect' iterations
 - Webpack config
 - Uglify styles inside html
+- Entrypoint undefined issue (debug console)

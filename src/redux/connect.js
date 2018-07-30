@@ -12,17 +12,14 @@ import { connect } from 'react-redux';
  * Require a Object with reducers
  *
  * Example: { reducer1, reducer2, ...}
- * Returns in component props something like props.state.<name-reducer>.<state>
+ * Returns in component props something like props.<name-reducer>.state.<state>
  */
-const statesToProps = keys => (state) => {
-  const props = { state: {} };
+const stateToProps = reducers => (state) => {
+  const props = {};
+  const keys = Object.keys(reducers);
 
-  if (keys) {
-    const reducers = Object.keys(keys);
-
-    for (let x = 0; x < reducers.length; x++) {
-      props.state[reducers[x]] = state[reducers[x]];
-    }
+  for (let x = 0; x < keys.length; x++) {
+    props[keys[x]] = { state: state[keys[x]] };
   }
 
   return props;
@@ -32,19 +29,32 @@ const statesToProps = keys => (state) => {
  * Require a Object with reducers
  *
  * Example: { reducer1, reducer2, ...}
- * Returns in component props something like props.actions.<name-reducer>.<action>
+ * Returns in component props something like props.<name-reducer>.actions.<action>
  */
-const dispatchToProps = reducers => (dispatch) => {
-  const props = { actions: {} };
+const actionsToProps = reducers => (dispatch) => {
+  const props = { };
   const keys = Object.keys(reducers);
 
   for (let x = 0; x < keys.length; x++) {
     const actions = Object.keys(reducers[keys[x]]);
-    props.actions[keys[x]] = {};
+    props[keys[x]] = { actions: {} };
 
     for (let y = 0; y < actions.length; y++) {
-      props.actions[keys[x]][actions[y]] = bindAction(reducers[keys[x]][actions[y]], dispatch);
+      props[keys[x]].actions[actions[y]] = bindAction(reducers[keys[x]][actions[y]], dispatch);
     }
+  }
+  return props;
+};
+
+/*
+ * Merge State and Actions in one props object <reducer>.
+ */
+const mergeProps = () => (state, actions) => {
+  const props = {};
+  const keys = Object.keys(state);
+
+  for (let x = 0; x < keys.length; x++) {
+    props[keys[x]] = { state: state[keys[x]].state, actions: actions[keys[x]].actions };
   }
 
   return props;
@@ -53,7 +63,11 @@ const dispatchToProps = reducers => (dispatch) => {
 /*
  * Export main function to use on React Components
  *
- * Example: import connect from 'connect';
- *          @connect(reducers...);
+ * Example: import Redux, { reducer1, reducer2, ... } from 'src/redux';
+ *          @Redux({ reducer1 , reducer2, ... });
  */
-export default reducers => connect(statesToProps(reducers), dispatchToProps(reducers));
+export default reducers => connect(
+  stateToProps(reducers),
+  actionsToProps(reducers),
+  mergeProps()
+);

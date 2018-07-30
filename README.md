@@ -34,6 +34,7 @@ npm run build
 - Templating (Jade)
 - Javascript Linter (Eslint)
 - State Container (Redux)
+- Easy redux connection (ExperimentalDecorators)
 
 ----------
 #### License MIT

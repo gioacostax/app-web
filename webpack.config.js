@@ -1,5 +1,5 @@
 /**
- * Copyright © 2015-2018 gioacostax. All rights reserved.
+ * Copyright © 2015-2019 gioacostax. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -38,7 +38,8 @@ module.exports = (env, argv) => {
     resolve: {
       alias: {
         src: DIR_SRC,
-        build: DIR_BUILD
+        build: DIR_BUILD,
+        'react-dom': DEV ? '@hot-loader/react-dom' : 'react-dom'
       },
       extensions: ['.js', '.jsx', '.css', '.scss']
     },
@@ -50,11 +51,7 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: [
             {
-              loader: 'babel-loader',
-              options: {
-                presets: ['env', 'react', 'stage-0'],
-                plugins: ['transform-decorators-legacy'].concat(DEV ? ['react-hot-loader/babel'] : [])
-              }
+              loader: 'babel-loader'
             },
             {
               loader: 'webpack-remove-block-loader',

@@ -1,8 +1,8 @@
 {
   "name": "App Web",
   "short_name": "app-web",
-  "description": "Simple React Boilerplate Project",
-  "version": "0.1.1",
+  "description": "Simple React + Redux Boilerplate Project",
+  "version": "0.1.2",
   "author": "Giorgio Acosta",
   "homepage_url": "https://github.com/gioacostax/app-web/",
   "display": "standalone",

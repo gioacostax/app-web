@@ -41,7 +41,7 @@ export default @Redux({ database, counter }) class App extends React.Component {
           <div className="result-message">{this.props.database.state.status}</div>
         </div>
         <div id="app-footer">
-          <h4>Made with <span className="heart">♥</span> by <a href="https://github.com/gioacostax">@gioacostax</a></h4>
+          <h4>Made with <span className="heart">♥</span> by <a href="https://www.giorgio.work">Giorgio.work</a></h4>
         </div>
       </div>
     );

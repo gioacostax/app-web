@@ -7,12 +7,10 @@
 
 import './styles/index.scss';
 
-import { Provider } from 'react-redux';
-import { store } from 'src/redux';
 import App from 'src/app';
 
 ReactDOM.render(
-  <Provider store={store}><App /></Provider>,
+  <App />,
   document.getElementById('app')
 );
 

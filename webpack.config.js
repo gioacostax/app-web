@@ -22,12 +22,8 @@ module.exports = (env, argv) => {
       app: 'src/index.jsx',
       vendors: [
         'react',
-        'react-dom',
-        'redux',
-        'redux-promise',
-        'redux-thunk',
-        'react-redux'
-      ].concat(DEV ? 'redux-logger' : [])
+        'react-dom'
+      ]
     },
 
     output: {

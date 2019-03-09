@@ -39,29 +39,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  h3 {
-    font-weight: 600;
-  }
-  .state-box {
-    margin: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    border: 1px solid #fff;
-    font-size: 13px;
-    font-family: 'Inconsolata';
-    width: 600px;
-    color: #fff;
-    background: #444;
-  }
-  .result-message {
-    margin-top: 10px;
-    padding: 5px;
-    font-size: 12px;
-    text-align: center;
-    color: #777;
-    font-family: 'Inconsolata';
-    width: 400px;
-  }
 }
 
 #app-footer {

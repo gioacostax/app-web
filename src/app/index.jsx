@@ -7,16 +7,19 @@
 
 import './styles.scss';
 
-import Redux, { database, counter } from 'src/redux';
-import { Loader } from 'src/components';
-
-export default @Redux({ database, counter }) class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.getData = () => {
-      this.props.counter.add(1);
-      this.props.database.getData('/manifest.json');
+    this.state = {
+      count: 0
+    };
+
+    this.addCount = () => {
+      /* eslint arrow-body-style: 0 */
+      this.setState((state) => {
+        return { count: state.count + 1 };
+      });
     };
   }
 
@@ -27,18 +30,9 @@ export default @Redux({ database, counter }) class App extends React.Component {
           <h1><span className="app-style">app</span>-Web</h1>
         </div>
         <div id="app-body">
-          <h3>REDUX (database.state)</h3>
-          <div className="state-box">{JSON.stringify(this.props.database.state.data)}</div>
-          {
-            this.props.database.state.loading
-              ? <Loader color="#888" />
-              : (
-                <button className="app-button" type="button" onClick={this.getData}>
-                  {`GET DATA (${this.props.counter.state.count})`}
-                </button>
-              )
-          }
-          <div className="result-message">{this.props.database.state.status}</div>
+          <button className="app-button" type="button" onClick={this.addCount}>
+            {`COUNT (${this.state.count})`}
+          </button>
         </div>
         <div id="app-footer">
           <h4>Made with <span className="heart">♥</span> by <a href="https://www.giorgio.work">Giorgio.work</a></h4>

@@ -10,7 +10,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link rel="preload" as="script" href="<%= htmlWebpackPlugin.files.chunks.vendors.entry %>">
   <script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.vendors.entry %>"></script>
+  <link rel="preload" as="script" href="<%= htmlWebpackPlugin.files.chunks.app.entry %>">
 </head>
 
 <body>

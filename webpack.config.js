@@ -108,7 +108,7 @@ module.exports = (env, argv) => {
       }]),
 
       // Delete Build folder
-      new CleanWebpackPlugin([DIR_BUILD])
+      new CleanWebpackPlugin()
     ],
 
     optimization: {

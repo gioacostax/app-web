@@ -8,7 +8,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
@@ -33,9 +32,17 @@ module.exports = (env, argv) => {
 
     resolve: {
       alias: {
+        // Source directory
         src: DIR_SRC,
+
+        // Build direrctory
         build: DIR_BUILD,
-        'react-dom': DEV ? '@hot-loader/react-dom' : 'react-dom'
+
+        // Preact reduce react and react-dom bundle size
+        react: DEV ? 'react' : 'preact-compat',
+
+        // HMR needs a patched react-dom
+        'react-dom': DEV ? '@hot-loader/react-dom' : 'preact-compat'
       },
       extensions: ['.js', '.jsx', '.css', '.scss']
     },
@@ -47,13 +54,13 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
           use: [
             {
-              loader: 'babel-loader'
-            },
-            {
               loader: 'webpack-remove-block-loader',
               options: {
                 active: (!DEV),
               }
+            },
+            {
+              loader: 'babel-loader'
             }
           ]
         },
@@ -61,8 +68,9 @@ module.exports = (env, argv) => {
           test: /\.(css|scss)$/,
           use: [
             'style-loader', // creates style nodes from JS strings
-            'css-loader', // translates CSS into CommonJS
-            'sass-loader' // compiles Sass to CSS
+            { loader: 'css-loader', options: { importLoaders: 1 } }, // translates CSS into CommonJS
+            'sass-loader', // compiles Sass to CSS
+            'postcss-loader' // PostCSS Procesor
           ]
         },
         {
@@ -84,6 +92,9 @@ module.exports = (env, argv) => {
         'process.env.NODE_ENV': DEV ? '"development"' : '"production"'
       }),
 
+      // Delete Build folder
+      new CleanWebpackPlugin(),
+
       // Set global modules.
       new webpack.ProvidePlugin({
         React: 'react',
@@ -92,8 +103,6 @@ module.exports = (env, argv) => {
 
       // Configure and render HTML using a template.
       new HtmlWebpackPlugin({
-        inject: false,
-        filename: 'index.html',
         template: 'src/index.ejs'
       }),
 
@@ -103,8 +112,8 @@ module.exports = (env, argv) => {
         ignore: ['.DS_Store']
       }]),
 
-      // Delete Build folder
-      new CleanWebpackPlugin()
+      // Reduce bundle size
+      new webpack.optimize.OccurrenceOrderPlugin()
     ],
 
     optimization: {
@@ -120,24 +129,34 @@ module.exports = (env, argv) => {
         }
       },
 
-      minimizer: [
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            output: {
-              // Secure mode to delete all comments in the bundle file.
-              comments: false
-            }
-          }
-        })
-      ]
+      // Minimize with Terser Plugin
+      // Info: https://webpack.js.org/plugins/terser-webpack-plugin/
+      minimize: true,
+
+      // No emit bundle on Errors
+      noEmitOnErrors: true
     },
 
     // Debug Original Source Lines on Navigator
     devtool: DEV ? 'cheap-module-eval-source-map' : '',
 
-    // Hide Modules Log
+    // Build Log
+    // Info: https://webpack.js.org/configuration/stats/
     stats: {
-      modules: false
+      modules: false,
+      children: false
+    },
+
+    // Development Log
+    // Info: https://webpack.js.org/configuration/dev-server/
+    devServer: {
+      overlay: true,
+      clientLogLevel: 'error',
+      stats: {
+        modules: false,
+        entrypoints: false,
+        children: false
+      }
     }
   };
 };

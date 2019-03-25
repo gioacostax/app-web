@@ -15,7 +15,7 @@ ReactDOM.render(
 );
 
 /* devblock:start */
-/* eslint import/no-extraneous-dependencies: 0 */
 // React Hot Loader
+// eslint-disable-next-line import/no-extraneous-dependencies
 require('react-hot-loader/root').hot(App);
 /* devblock:end */

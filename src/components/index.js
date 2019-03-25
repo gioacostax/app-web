@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 
 /**
  * Copyright © 2015-2019 gioacostax. All rights reserved.

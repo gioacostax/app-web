@@ -103,17 +103,15 @@ module.exports = (env, argv) => {
 
       // Configure and render HTML using a template.
       new HtmlWebpackPlugin({
-        template: 'src/index.ejs'
+        template: 'src/index.ejs',
+        minify: { collapseWhitespace: true }
       }),
 
       // Copy static files into the build folder, ignoring some files.
       new CopyWebpackPlugin([{
         from: 'src/static',
         ignore: ['.DS_Store']
-      }]),
-
-      // Reduce bundle size
-      new webpack.optimize.OccurrenceOrderPlugin()
+      }])
     ],
 
     optimization: {
@@ -134,7 +132,10 @@ module.exports = (env, argv) => {
       minimize: true,
 
       // No emit bundle on Errors
-      noEmitOnErrors: true
+      noEmitOnErrors: true,
+
+      // Minify Bundle Size
+      occurrenceOrder: true
     },
 
     // Debug Original Source Lines on Navigator

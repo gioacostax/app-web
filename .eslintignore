@@ -1,0 +1,5 @@
+# Compiled output
+build
+
+# Node.js and NPM
+node_modules

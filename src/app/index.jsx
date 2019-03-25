@@ -16,10 +16,7 @@ export default class App extends React.Component {
     };
 
     this.addCount = () => {
-      /* eslint arrow-body-style: 0 */
-      this.setState((state) => {
-        return { count: state.count + 1 };
-      });
+      this.setState(state => ({ count: state.count + 1 }));
     };
   }
 
@@ -35,7 +32,7 @@ export default class App extends React.Component {
           </button>
         </div>
         <div id="app-footer">
-          <h4>Made with <span className="heart">♥</span> by <a href="https://www.giorgio.work">Giorgio.work</a></h4>
+          <h4>Made with <span className="heart">♥</span> by <a href="https://www.giorgio.work/">Giorgio.work</a></h4>
         </div>
       </div>
     );

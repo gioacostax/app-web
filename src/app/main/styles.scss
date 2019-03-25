@@ -1,0 +1,44 @@
+/** license react-kit
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+#main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+svg {
+  &[icon] {
+    height: 15px;
+    margin-left: 5px;
+  }
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 36px;
+
+  padding: 5px 10px;
+  border: 1px solid #555;
+  box-shadow: 3px 3px #555;
+
+  font-size: 12px;
+  font-family: inherit;
+  text-align: center;
+
+  color: #111;
+
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 3px 3px #000;
+  }
+}

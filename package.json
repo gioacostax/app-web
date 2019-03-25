@@ -1,0 +1,175 @@
+{
+  "name": "react-kit",
+  "version": "1.0.0",
+  "description": "React Starter Kit",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "lint": "npm run lint-js && npm run lint-css",
+    "lint-js": "eslint src --ext .js,.jsx",
+    "lint-css": "stylelint 'src/**/*.{css,scss,sass}'",
+    "build": "npm run lint && npm run build-webpack",
+    "build-webpack": "webpack --mode=production",
+    "build-analyzer": "webpack-dashboard -- npm run build",
+    "build-server": "npm run build && serve build",
+    "build-vercel": "npm run build && vercel",
+    "deploy-vercel": "vercel --prod"
+  },
+  "author": "Giorgio Acosta",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gioacostax/react-kit.git"
+  },
+  "app": {
+    "start_url": "/",
+    "src_alias": "src",
+    "static_dir": "src/static",
+    "index_html": "src/index.ejs",
+    "main_js": "src/index.jsx"
+  },
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-export-default-from": "^7.8.3",
+    "@babel/preset-react": "^7.9.4",
+    "@hot-loader/react-dom": "^16.13.0",
+    "@types/react": "^16.9.35",
+    "autoprefixer": "^9.8.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^6.0.1",
+    "css-loader": "^3.5.3",
+    "error-overlay-webpack-plugin": "^0.4.1",
+    "eslint": "^7.1.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.2",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "preact": "^10.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.21",
+    "rimraf": "^3.0.2",
+    "sass-loader": "^8.0.2",
+    "script-ext-html-webpack-plugin": "^2.1.4",
+    "serve": "^11.3.1",
+    "style-loader": "^1.2.1",
+    "stylelint": "^13.5.0",
+    "stylelint-config-sass-guidelines": "^7.0.0",
+    "stylelint-scss": "^3.17.2",
+    "terser-webpack-plugin": "^3.0.1",
+    "vercel": "^19.0.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dashboard": "^3.2.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-remove-block-loader": "^1.0.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-export-default-from",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": [
+      "airbnb"
+    ],
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "moduleDirectory": [
+            "private_modules",
+            "node_modules"
+          ]
+        }
+      }
+    },
+    "ignorePatterns": [
+      "**/build",
+      "**/node_modules",
+      "**/private_modules"
+    ],
+    "env": {
+      "browser": true
+    },
+    "globals": {
+      "React": true
+    },
+    "rules": {
+      "no-console": 0,
+      "comma-dangle": 0,
+      "lines-between-class-members": 0,
+      "no-nested-ternary": 0,
+      "object-curly-newline": [
+        "warn",
+        {
+          "ObjectPattern": {
+            "multiline": true,
+            "minProperties": 5
+          }
+        }
+      ],
+      "prefer-arrow-callback": 0,
+      "import/extensions": 0,
+      "import/no-unresolved": [
+        2,
+        {
+          "ignore": [
+            "src/",
+            "^./styles"
+          ]
+        }
+      ],
+      "react/prop-types": 0,
+      "react/jsx-one-expression-per-line": 0,
+      "jsx-a11y/no-noninteractive-element-interactions": [
+        "error",
+        {
+          "handlers": [
+            "onClick"
+          ]
+        }
+      ]
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-sass-guidelines",
+    "plugins": [
+      "stylelint-scss"
+    ],
+    "rules": {
+      "selector-max-id": null,
+      "order/properties-alphabetical-order": null,
+      "selector-no-qualifying-type": null
+    }
+  }
+}

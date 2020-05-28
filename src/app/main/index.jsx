@@ -5,18 +5,30 @@
  */
 
 import './styles';
-import { useState } from 'react';
+import STORE, { useObserver } from 'src/mobx';
 import { Send } from '@react-icons/the-icon-of';
 
 export default function Main() {
-  const [count, setCount] = useState(0);
+  const getData = (e) => {
+    if (!STORE.database.loading) {
+      STORE.counter.add(1);
+      STORE.database.loadData('/manifest.json');
+    } else STORE.database.cancelLoadData();
+    e.preventDefault();
+  };
 
-  return (
+  return useObserver(() => (
     <div id="main">
-      <button type="button" onClick={() => setCount(count + 1)}>
-        {`COUNT (${count})`}
+      <div className="state-box">{JSON.stringify(STORE.database.data)}</div>
+      <button type="button" onClick={getData}>
+        {
+          STORE.database.loading
+            ? 'loading...'
+            : `GET DATA (${STORE.counter.count})`
+        }
         <Send />
       </button>
+      <div className="result-message">{STORE.database.status}</div>
     </div>
-  );
+  ));
 }

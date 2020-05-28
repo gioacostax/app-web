@@ -101,7 +101,8 @@
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
-      "airbnb"
+      "airbnb",
+      "airbnb/hooks"
     ],
     "settings": {
       "import/resolver": {

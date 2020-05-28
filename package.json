@@ -4,15 +4,13 @@
   "description": "React Starter Kit",
   "scripts": {
     "start": "webpack-dev-server",
-    "lint": "npm run lint-js && npm run lint-css",
-    "lint-js": "eslint src --ext .js,.jsx",
-    "lint-css": "stylelint 'src/**/*.{css,scss,sass}'",
-    "build": "npm run lint && npm run build-webpack",
-    "build-webpack": "webpack --mode=production",
-    "build-analyzer": "webpack-dashboard -- npm run build",
-    "build-server": "npm run build && serve build",
-    "build-vercel": "npm run build && vercel",
-    "deploy-vercel": "vercel --prod"
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint src --ext .js,.jsx",
+    "lint:css": "stylelint 'src/**/*.{css,scss,sass}'",
+    "build": "webpack --mode=production",
+    "build:analyzer": "webpack-dashboard -- npm run build",
+    "build:server": "npm run build && serve build",
+    "deploy:vercel": "npm run build && vercel"
   },
   "author": "Giorgio Acosta",
   "license": "MIT",

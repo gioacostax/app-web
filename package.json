@@ -4,15 +4,13 @@
   "description": "React Starter Kit",
   "scripts": {
     "start": "webpack-dev-server",
-    "lint": "npm run lint-js && npm run lint-css",
-    "lint-js": "eslint src --ext .js,.jsx",
-    "lint-css": "stylelint 'src/**/*.{css,scss,sass}'",
-    "build": "npm run lint && npm run build-webpack",
-    "build-webpack": "webpack --mode=production",
-    "build-analyzer": "webpack-dashboard -- npm run build",
-    "build-server": "npm run build && serve build",
-    "build-vercel": "npm run build && vercel",
-    "deploy-vercel": "vercel --prod"
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint src --ext .js,.jsx",
+    "lint:css": "stylelint 'src/**/*.{css,scss,sass}'",
+    "build": "webpack --mode=production",
+    "build:analyzer": "webpack-dashboard -- npm run build",
+    "build:server": "npm run build && serve build",
+    "deploy:vercel": "npm run build && vercel"
   },
   "author": "Giorgio Acosta",
   "license": "MIT",
@@ -28,11 +26,11 @@
     "main_js": "src/index.jsx"
   },
   "dependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-decorators": "^7.8.3",
-    "@babel/plugin-proposal-export-default-from": "^7.8.3",
-    "@babel/preset-react": "^7.9.4",
+    "@babel/core": "^7.10.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-decorators": "^7.10.1",
+    "@babel/plugin-proposal-export-default-from": "^7.10.1",
+    "@babel/preset-react": "^7.10.1",
     "@hot-loader/react-dom": "^16.13.0",
     "@types/react": "^16.9.35",
     "autoprefixer": "^9.8.0",
@@ -46,7 +44,7 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^4.0.2",
+    "eslint-plugin-react-hooks": "^4.0.4",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "mini-css-extract-plugin": "^0.9.0",
@@ -68,7 +66,7 @@
     "stylelint": "^13.5.0",
     "stylelint-config-sass-guidelines": "^7.0.0",
     "stylelint-scss": "^3.17.2",
-    "terser-webpack-plugin": "^3.0.1",
+    "terser-webpack-plugin": "^3.0.2",
     "vercel": "^19.0.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
@@ -104,7 +102,8 @@
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": [
-      "airbnb"
+      "airbnb",
+      "airbnb/hooks"
     ],
     "settings": {
       "import/resolver": {

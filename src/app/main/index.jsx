@@ -5,18 +5,33 @@
  */
 
 import './styles';
-import { useState } from 'react';
 import { Send } from '@react-icons/the-icon-of';
+import redux, { counter, database } from 'src/redux';
 
 export default function Main() {
-  const [count, setCount] = useState(0);
+  const STORE = redux.useSelector((store) => store);
+  const dispatch = redux.useDispatch();
+
+  const getData = (e) => {
+    if (!database.loading) {
+      dispatch(counter.add(1));
+      dispatch(database.loadData('/manifest.json'));
+    } else dispatch(database.cancelLoadData());
+    e.preventDefault();
+  };
 
   return (
     <div id="main">
-      <button type="button" onClick={() => setCount(count + 1)}>
-        {`COUNT (${count})`}
+      <div className="state-box">{JSON.stringify(STORE.database.data)}</div>
+      <button type="button" onClick={getData}>
+        {
+          STORE.database.loading
+            ? 'loading...'
+            : `GET DATA (${STORE.counter.count})`
+        }
         <Send />
       </button>
+      <div className="result-message">{STORE.database.status}</div>
     </div>
   );
 }

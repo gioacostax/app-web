@@ -42,3 +42,27 @@ button {
     box-shadow: 3px 3px #000;
   }
 }
+
+.state-box {
+  width: 600px;
+
+  margin: 10px;
+  padding: 5px;
+
+  background: #444;
+
+  border: 1px solid #fff;
+  font-size: 13px;
+  color: #fff;
+}
+
+.result-message {
+  width: 400px;
+
+  margin-top: 10px;
+  padding: 5px;
+
+  font-size: 12px;
+  text-align: center;
+  color: #777;
+}

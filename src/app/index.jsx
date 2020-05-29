@@ -5,9 +5,11 @@
  */
 
 import './styles';
+import { Provider } from 'react-redux';
+import { store } from 'src/redux';
 import Main from './main';
 
-const App = () => <Main />;
+const App = () => <Provider store={store}><Main /></Provider>;
 
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
 export default /* devblock:start */require('react-hot-loader/root').hot(App)

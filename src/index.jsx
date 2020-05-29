@@ -4,7 +4,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import App from 'src/app';
 import ReactDOM from 'react-dom';
+import App from 'src/app';
 
 ReactDOM.render(<App />, document.getElementById('app'));

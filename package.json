@@ -166,6 +166,7 @@
       "stylelint-scss"
     ],
     "rules": {
+      "max-nesting-depth": 4,
       "selector-max-id": null,
       "order/properties-alphabetical-order": null,
       "selector-no-qualifying-type": null

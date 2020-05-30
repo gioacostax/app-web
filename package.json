@@ -36,6 +36,7 @@
     "autoprefixer": "^9.8.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "blink": "https://github.com/gioacostax/blink.git",
     "copy-webpack-plugin": "^6.0.1",
     "css-loader": "^3.5.3",
     "error-overlay-webpack-plugin": "^0.4.1",
@@ -102,20 +103,9 @@
       "airbnb",
       "airbnb/hooks"
     ],
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "moduleDirectory": [
-            "private_modules",
-            "node_modules"
-          ]
-        }
-      }
-    },
     "ignorePatterns": [
       "**/build",
-      "**/node_modules",
-      "**/private_modules"
+      "**/node_modules"
     ],
     "env": {
       "browser": true

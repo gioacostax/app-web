@@ -3,7 +3,7 @@
 
 name: ReactKit
 
-on: push
+on: [push, pull_request]
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: '14.x'
     - name: Install dependencies
-      run: yarn
+      run: yarn install --no-lockfile
     - name: Build project
       run: yarn build
 
@@ -34,6 +34,6 @@ jobs:
       with:
         node-version: '14.x'
     - name: Install dependencies
-      run: yarn
+      run: yarn install --no-lockfile
     - name: Lint project
       run: yarn lint

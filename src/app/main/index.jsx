@@ -6,7 +6,8 @@
 
 import './styles';
 import STORE, { useObserver } from 'src/mobx';
-import { Send } from '@react-icons/the-icon-of';
+import { Send } from 'blink/icons/the-icon-of';
+
 
 export default function Main() {
   const getData = (e) => {

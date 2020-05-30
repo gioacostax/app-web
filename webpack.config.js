@@ -76,17 +76,14 @@ module.exports = (env, argv) => {
       },
 
       // Avoid use extensiones importing modules
-      extensions: ['.js', '.jsx', '.css', '.scss', '.sass'],
-
-      // Add private_modules folder to resolve
-      modules: ['private_modules', 'node_modules']
+      extensions: ['.js', '.jsx', '.css', '.scss', '.sass']
     },
 
     module: {
       rules: [
         {
           test: /\.(js|jsx)$/,
-          exclude: /(node|private)_modules/,
+          exclude: /node_modules/,
           use: [
             {
               // Remove dev blocks
@@ -177,11 +174,6 @@ module.exports = (env, argv) => {
           vendors: {
             name: 'vendors',
             test: /[\\/]node_modules[\\/]/,
-            chunks: 'all',
-          },
-          private: {
-            name: 'private',
-            test: /[\\/]private_modules[\\/]/,
             chunks: 'all',
           }
         }

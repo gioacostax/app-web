@@ -4,19 +4,19 @@
   "description": "React Starter Kit",
   "scripts": {
     "start": "webpack-dev-server",
-    "lint": "npm run lint:js && npm run lint:css",
+    "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint src --ext .js,.jsx",
     "lint:css": "stylelint 'src/**/*.{css,scss,sass}'",
     "build": "webpack --mode=production",
-    "build:analyzer": "webpack-dashboard -- npm run build",
-    "build:server": "npm run build && serve build",
-    "deploy:vercel": "npm run build && vercel"
+    "build:analyzer": "webpack-dashboard -- yarn build",
+    "build:server": "yarn build && serve build",
+    "deploy:vercel": "yarn build && vercel"
   },
   "author": "Giorgio Acosta",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:gioacostax/react-kit.git"
+    "url": "https://github.com:gioacostax/react-kit.git"
   },
   "app": {
     "start_url": "/",
@@ -36,6 +36,7 @@
     "autoprefixer": "^9.8.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "blink": "https://github.com/gioacostax/blink.git",
     "copy-webpack-plugin": "^6.0.1",
     "css-loader": "^3.5.3",
     "error-overlay-webpack-plugin": "^0.4.1",
@@ -105,20 +106,9 @@
       "airbnb",
       "airbnb/hooks"
     ],
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "moduleDirectory": [
-            "private_modules",
-            "node_modules"
-          ]
-        }
-      }
-    },
     "ignorePatterns": [
       "**/build",
-      "**/node_modules",
-      "**/private_modules"
+      "**/node_modules"
     ],
     "env": {
       "browser": true
@@ -169,6 +159,7 @@
       "stylelint-scss"
     ],
     "rules": {
+      "max-nesting-depth": 4,
       "selector-max-id": null,
       "order/properties-alphabetical-order": null,
       "selector-no-qualifying-type": null

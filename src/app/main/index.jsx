@@ -5,8 +5,8 @@
  */
 
 import './styles';
-import { Send } from '@react-icons/the-icon-of';
 import redux, { counter, database } from 'src/redux';
+import { Send } from 'blink/icons/the-icon-of';
 
 export default function Main() {
   const STORE = redux.useSelector((store) => store);

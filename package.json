@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:gioacostax/react-kit.git"
+    "url": "https://github.com:gioacostax/react-kit.git"
   },
   "app": {
     "start_url": "/",

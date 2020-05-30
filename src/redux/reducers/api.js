@@ -5,9 +5,9 @@
  */
 
 /* Actions types */
-const FETCH_DATA = 'DATABASE.FETCH_DATA';
-const SET_DATA = 'DATABASE.SET_DATA';
-const STOP = 'DATABASE.STOP';
+const FETCH_DATA = 'API.FETCH_DATA';
+const SET_DATA = 'API.SET_DATA';
+const STOP = 'API.STOP';
 
 /* Initial State */
 const initialState = {
@@ -15,7 +15,7 @@ const initialState = {
   loading: false,
   controller: null,
   error: null,
-  status: '[DATABASE] READY.'
+  status: '[API] READY'
 };
 
 /* Private Actions */
@@ -36,8 +36,8 @@ const fetchData = (url) => async (dispatch) => {
 };
 
 const stopGetData = () => (dispatch, getState) => {
-  if (getState().database.controller) {
-    getState().database.controller.abort();
+  if (getState().api.controller) {
+    getState().api.controller.abort();
     dispatch({ type: STOP, reason: 'CANCEL BY THE USER', error: null });
   }
 };
@@ -57,7 +57,7 @@ export default (state = initialState, action) => {
         loading: true,
         error: null,
         controller: action.controller,
-        status: '[DATABASE.FETCH_DATA] ASYNC:WORKING...'
+        status: '[API.FETCH_DATA] ASYNC:WORKING...'
       };
     }
 
@@ -68,7 +68,7 @@ export default (state = initialState, action) => {
         loading: false,
         error: null,
         controller: null,
-        status: '[DATABASE.SET_DATA] DONE'
+        status: '[API.SET_DATA] DONE'
       };
     }
 
@@ -77,7 +77,7 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         controller: null,
-        status: `[DATABASE.STOP] REASON: ${action.reason}`,
+        status: `[API.STOP] REASON: ${action.reason}`,
         error: action.error
       };
     }

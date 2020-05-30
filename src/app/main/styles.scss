@@ -12,13 +12,6 @@
   height: 100vh;
 }
 
-svg {
-  &[icon] {
-    height: 15px;
-    margin-left: 5px;
-  }
-}
-
 button {
   display: flex;
   align-items: center;
@@ -27,42 +20,53 @@ button {
   height: 36px;
 
   padding: 5px 10px;
-  border: 1px solid #555;
-  box-shadow: 3px 3px #555;
+  background: #000;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px 1px #aaa;
+  transition: box-shadow 0.2s linear;
 
   font-size: 12px;
   font-family: inherit;
   text-align: center;
 
-  color: #111;
+  color: #fff;
 
   cursor: pointer;
 
   &:hover {
-    box-shadow: 3px 3px #000;
+    box-shadow: 0 2px 5px 4px #bbb;
+    transition: box-shadow 0.2s linear;
+  }
+
+  [icon] {
+    height: 1.3em;
+    margin-left: 5px;
   }
 }
 
-.state-box {
-  width: 600px;
+h1 {
+  color: #444;
+}
 
-  margin: 10px;
-  padding: 5px;
+.joke {
+  max-width: 400px;
 
-  background: #444;
+  margin: 20px;
+  padding-left: 15px;
 
-  border: 1px solid #fff;
-  font-size: 13px;
-  color: #fff;
+  border-left: solid 3px rgb(252, 172, 0);
+
+  font-size: 1.2em;
+  line-height: 1.5em;
+
+  color: #555;
 }
 
 .result-message {
-  width: 400px;
+  width: 350px;
 
-  margin-top: 10px;
-  padding: 5px;
-
-  font-size: 12px;
+  font-size: 0.7em;
   text-align: center;
-  color: #777;
+  color: #888;
 }

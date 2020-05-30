@@ -5,33 +5,33 @@
  */
 
 import './styles';
-import redux, { counter, database } from 'src/redux';
-import { Send } from 'blink/icons/the-icon-of';
+import redux, { counter, api } from 'src/redux';
+import { DownloadTo, Clear } from 'blink/icons/the-icon-of';
 
 export default function Main() {
   const STORE = redux.useSelector((store) => store);
   const dispatch = redux.useDispatch();
 
   const getData = (e) => {
-    if (!database.loading) {
+    if (!api.loading) {
       dispatch(counter.add(1));
-      dispatch(database.loadData('/manifest.json'));
-    } else dispatch(database.cancelLoadData());
+      dispatch(api.loadData('https://api.chucknorris.io/jokes/random'));
+    } else dispatch(api.cancelLoadData());
     e.preventDefault();
   };
 
   return (
     <div id="main">
-      <div className="state-box">{JSON.stringify(STORE.database.data)}</div>
+      <h1>Chuck Norris facts</h1>
       <button type="button" onClick={getData}>
         {
-          STORE.database.loading
-            ? 'loading...'
-            : `GET DATA (${STORE.counter.count})`
+          STORE.api.loading
+            ? <>FETCHING...<Clear /></>
+            : <>FETCH FACT<DownloadTo /></>
         }
-        <Send />
       </button>
-      <div className="result-message">{STORE.database.status}</div>
+      <div className="joke">{STORE.api.data.value}</div>
+      <div className="result-message">{`Count: ${STORE.counter.count} - API Msg: ${STORE.api.status}`}</div>
     </div>
   );
 }

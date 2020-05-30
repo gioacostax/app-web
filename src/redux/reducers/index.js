@@ -5,13 +5,13 @@
  */
 
 import { combineReducers } from 'redux';
-import database from './database';
+import api from './api';
 import counter from './counter';
 
-export { actions as database } from './database';
+export { actions as api } from './api';
 export { actions as counter } from './counter';
 
 export default combineReducers({
-  database,
+  api,
   counter
 });

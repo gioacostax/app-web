@@ -196,6 +196,7 @@ module.exports = (env, argv) => {
 
     // Development config
     devServer: {
+      clientLogLevel: 'warn',
       open: 'firefox developer edition',
       port: 3000,
       hot: true, // Avoid reloading page

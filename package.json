@@ -10,7 +10,7 @@
     "build": "webpack --mode=production",
     "build:analyzer": "webpack-dashboard -- yarn build",
     "build:server": "yarn build && serve build",
-    "deploy:vercel": "yarn build && vercel"
+    "deploy:vercel": "vercel"
   },
   "author": "Giorgio Acosta",
   "license": "MIT",

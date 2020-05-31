@@ -1,13 +1,12 @@
-/** license react-kit
- *
+/**
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
 /* Actions types */
-const FETCH_DATA = 'API.FETCH_DATA';
-const SET_DATA = 'API.SET_DATA';
-const STOP = 'API.STOP';
+const FETCH_DATA = 'API-FETCH_DATA';
+const SET_DATA = 'API-SET_DATA';
+const STOP = 'API-STOP';
 
 /* Initial State */
 const initialState = {
@@ -15,38 +14,36 @@ const initialState = {
   loading: false,
   controller: null,
   error: null,
-  status: '[API] READY'
-};
-
-/* Private Actions */
-const fetchData = (url) => async (dispatch) => {
-  const controller = new AbortController();
-  dispatch({ controller, type: FETCH_DATA });
-  try {
-    const params = { signal: controller.signal };
-    const raw = await fetch(url, params);
-    const json = await raw.json();
-    dispatch({ type: SET_DATA, data: json });
-  } catch (error) {
-    // Si el error NO es por cancelación...
-    if (error.code !== 20) {
-      dispatch({ type: STOP, reason: error.message, error });
-    }
-  }
-};
-
-const stopGetData = () => (dispatch, getState) => {
-  if (getState().api.controller) {
-    getState().api.controller.abort();
-    dispatch({ type: STOP, reason: 'CANCEL BY THE USER', error: null });
-  }
+  status: 'Ready'
 };
 
 /* Public Actions */
-const loadData = (url) => fetchData(url);
-const cancelLoadData = () => stopGetData();
+const loadData = (url) => async (dispatch) => {
+  // Assign fetch controller
+  const controller = new AbortController();
+  dispatch({ type: FETCH_DATA, controller });
 
-export const actions = { loadData, cancelLoadData };
+  try {
+    // Execute fetch
+    const raw = await fetch(url, { signal: controller.signal });
+    const json = await raw.json();
+    return dispatch({ type: SET_DATA, data: json });
+  } catch (error) {
+    // If the error is not due to cancellation
+    if (error.code !== 20) return dispatch({ type: STOP, msg: error.message, error });
+    return { type: STOP, msg: 'Canceled by user', error: null };
+  }
+};
+
+const cancelLoad = () => (dispatch, getState) => {
+  if (getState().api.controller) {
+    getState().api.controller.abort();
+    dispatch({ type: STOP, msg: 'Canceled by user', error: null });
+  }
+  dispatch({ type: STOP, msg: 'Ready', error: null });
+};
+
+export const actions = { loadData, cancelLoad };
 
 /* Reducer */
 export default (state = initialState, action) => {
@@ -57,7 +54,7 @@ export default (state = initialState, action) => {
         loading: true,
         error: null,
         controller: action.controller,
-        status: '[API.FETCH_DATA] ASYNC:WORKING...'
+        status: 'Fetching data...'
       };
     }
 
@@ -68,7 +65,7 @@ export default (state = initialState, action) => {
         loading: false,
         error: null,
         controller: null,
-        status: '[API.SET_DATA] DONE'
+        status: 'Data loaded'
       };
     }
 
@@ -77,7 +74,7 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         controller: null,
-        status: `[API.STOP] REASON: ${action.reason}`,
+        status: `${action.msg}`,
         error: action.error
       };
     }

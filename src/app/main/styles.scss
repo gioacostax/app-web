@@ -19,7 +19,7 @@ button {
 
   height: 36px;
 
-  padding: 5px 10px;
+  padding: 5px 12px;
   background: #000;
   border: 0;
   border-radius: 6px;
@@ -35,7 +35,7 @@ button {
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 2px 5px 4px #bbb;
+    box-shadow: 0 2px 8px 4px #bbb;
     transition: box-shadow 0.2s linear;
   }
 
@@ -49,7 +49,7 @@ h1 {
   color: #444;
 }
 
-.joke {
+.fact {
   max-width: 400px;
 
   margin: 20px;
@@ -63,7 +63,7 @@ h1 {
   color: #555;
 }
 
-.result-message {
+.store-msg {
   width: 350px;
 
   font-size: 0.7em;

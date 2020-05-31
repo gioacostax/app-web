@@ -1,11 +1,9 @@
-/** license react-kit
- *
+/**
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
 import { createStore, applyMiddleware } from 'redux';
-import ReduxPromise from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 import * as redux from 'react-redux';
 import reducers from 'src/redux/reducers';
@@ -13,8 +11,7 @@ import reducers from 'src/redux/reducers';
 const store = createStore(
   reducers,
   applyMiddleware(
-    ReduxThunk,
-    ReduxPromise
+    ReduxThunk
     /* devblock:start */
     // eslint-disable-next-line comma-style
     , require('redux-logger').createLogger({ duration: true, collapsed: true })

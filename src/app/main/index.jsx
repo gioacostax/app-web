@@ -9,15 +9,16 @@ import redux, { counter, api } from 'src/redux';
 import { DownloadTo, Clear } from 'blink/icons/the-icon-of';
 
 export default function Main() {
-  const STORE = redux.useSelector((store) => store);
+  const store = redux.useSelector((states) => states);
   const dispatch = redux.useDispatch();
 
-  const getData = (e) => {
-    if (!api.loading) {
+  const getData = () => {
+    if (!store.api.loading) {
       dispatch(counter.add(1));
-      dispatch(api.loadData('https://api.chucknorris.io/jokes/random'));
-    } else dispatch(api.cancelLoadData());
-    e.preventDefault();
+      dispatch(api.loadData('https://api.chucknorris.io/jokes/random'))
+        .then() // Handle sucessful promise
+        .catch(); // Handle error promise
+    } else dispatch(api.cancelLoad());
   };
 
   return (
@@ -25,13 +26,13 @@ export default function Main() {
       <h1>Chuck Norris facts</h1>
       <button type="button" onClick={getData}>
         {
-          STORE.api.loading
-            ? <>FETCHING...<Clear /></>
-            : <>FETCH FACT<DownloadTo /></>
+          store.api.loading
+            ? <>LOADING...<Clear /></>
+            : <>LOAD FACT<DownloadTo /></>
         }
       </button>
-      <div className="joke">{STORE.api.data.value}</div>
-      <div className="result-message">{`Count: ${STORE.counter.count} - API Msg: ${STORE.api.status}`}</div>
+      <div className="fact">{store.api.data.value}</div>
+      <div className="store-msg">{`Count: ${store.counter.count} - API Status: ${store.api.status}`}</div>
     </div>
   );
 }

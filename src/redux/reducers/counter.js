@@ -1,12 +1,11 @@
-/** license react-kit
- *
+/**
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
 /* Actions types */
-const ADD = 'COUNTER.ADD';
-const REMOVE = 'COUNTER.REMOVE';
+const ADD = 'COUNTER-ADD';
+const REMOVE = 'COUNTER-REMOVE';
 
 /* Initial State */
 const initialState = { count: 0 };

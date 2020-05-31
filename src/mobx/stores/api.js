@@ -1,5 +1,4 @@
-/** license react-kit
- *
+/**
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
@@ -7,45 +6,45 @@
 import { observable, action, runInAction } from 'mobx';
 
 export default new class Database {
-  @observable status = '[DATABASE.loadData] READY.';
+  @observable status = 'Ready';
   @observable loading = false;
   @observable data = {};
   controller = null;
   error = null
 
-  @action('[DATABASE.loadData] ASYNC WORKING...')
+  @action('API.LOAD_DATA')
   loadData = async (url) => {
     try {
       this.loading = true;
-      this.status = '[DATABASE.loadData] ASYNC WORKING...';
+      this.status = 'Fetching data...';
       this.controller = new AbortController();
       this.error = null;
-      const params = { signal: this.controller.signal };
-      const raw = await fetch(url, params);
+      const raw = await fetch(url, { signal: this.controller.signal });
       const json = await raw.json();
-      runInAction('[DATABASE.loadData] ASYNC DONE', () => {
-        this.status = '[DATABASE.loadData] ASYNC DONE';
+      return runInAction('API.SET_DATA', () => {
         this.data = json;
         this.loading = false;
+        this.status = 'Data loaded';
       });
     } catch (error) {
-      // Si el error NO es por cancelación...
+      // If the error is not due to cancellation
       if (error.code !== 20) {
-        runInAction('[DATABASE.loadData] ASYNC ERROR', () => {
-          this.status = '[DATABASE.loadData] ASYNC ERROR';
+        return runInAction('API.STOP', () => {
+          this.status = error.message;
           this.loading = false;
-          this.error = error.message;
+          this.error = error;
         });
       }
+      return error;
     }
   };
 
-  @action('[DATABASE.cancelLoadData]')
+  @action('API.CANCEL_LOAD')
   cancelLoadData = () => {
     if (this.controller) {
-      this.status = '[DATABASE.cancelLoadData]';
       this.controller.abort();
       this.loading = false;
+      this.status = 'Canceled by user';
     }
   };
 }();

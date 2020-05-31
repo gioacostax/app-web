@@ -4,31 +4,31 @@
  */
 
 import './styles';
-import STORE, { useObserver } from 'src/mobx';
-import { Send } from 'blink/icons/the-icon-of';
-
+import mobx, { api, counter } from 'src/mobx';
+import { DownloadTo, Clear } from 'blink/icons/the-icon-of';
 
 export default function Main() {
-  const getData = (e) => {
-    if (!STORE.database.loading) {
-      STORE.counter.add(1);
-      STORE.database.loadData('/manifest.json');
-    } else STORE.database.cancelLoadData();
-    e.preventDefault();
+  const getData = () => {
+    if (!api.loading) {
+      counter.add(1);
+      api.loadData('https://api.chucknorris.io/jokes/random')
+        .then() // Handle sucessful promise
+        .catch(); // Handle error promise
+    } else api.cancelLoadData();
   };
 
-  return useObserver(() => (
+  return mobx.useObserver(() => (
     <div id="main">
-      <div className="state-box">{JSON.stringify(STORE.database.data)}</div>
+      <h1>Chuck Norris facts</h1>
       <button type="button" onClick={getData}>
         {
-          STORE.database.loading
-            ? 'loading...'
-            : `GET DATA (${STORE.counter.count})`
+          api.loading
+            ? <>LOADING...<Clear /></>
+            : <>LOAD FACT<DownloadTo /></>
         }
-        <Send />
       </button>
-      <div className="result-message">{STORE.database.status}</div>
+      <div className="fact">{api.data.value}</div>
+      <div className="store-msg">{`Count: ${counter.count} - API Msg: ${api.status}`}</div>
     </div>
   ));
 }

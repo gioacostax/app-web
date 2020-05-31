@@ -5,7 +5,7 @@
 
 import './styles';
 import { useState } from 'react';
-import { Send } from 'blink/icons/the-icon-of';
+import { ThumbsUp } from 'blink/icons/the-icon-of';
 
 export default function Main() {
   const [count, setCount] = useState(0);
@@ -13,8 +13,8 @@ export default function Main() {
   return (
     <div id="main">
       <button type="button" onClick={() => setCount(count + 1)}>
-        {`COUNT (${count})`}
-        <Send />
+        {count} Likes
+        <ThumbsUp />
       </button>
     </div>
   );

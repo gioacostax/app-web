@@ -4,9 +4,9 @@
  */
 
 /* Actions types */
-const FETCH_DATA = 'API-FETCH_DATA';
-const SET_DATA = 'API-SET_DATA';
-const STOP = 'API-STOP';
+const FETCH_DATA = 'API.FETCH_DATA';
+const SET_DATA = 'API.SET_DATA';
+const STOP = 'API.STOP';
 
 /* Initial State */
 const initialState = {

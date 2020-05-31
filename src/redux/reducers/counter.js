@@ -4,8 +4,8 @@
  */
 
 /* Actions types */
-const ADD = 'COUNTER-ADD';
-const REMOVE = 'COUNTER-REMOVE';
+const ADD = 'COUNTER.ADD';
+const REMOVE = 'COUNTER.REMOVE';
 
 /* Initial State */
 const initialState = { count: 0 };

@@ -1,7 +1,6 @@
 {
-  "name": "App",
-  "short_name": "react-kit",
-  "description": "React Starter Kit",
+  "name": "React Starter Kit",
+  "short_name": "ReactKit",
   "theme_color": "#f5f6fb",
   "background_color": "#f5f6fb",
   "start_url": "/",

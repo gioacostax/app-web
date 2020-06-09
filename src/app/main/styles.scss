@@ -10,3 +10,14 @@
   justify-content: center;
   height: 100vh;
 }
+
+button.scroller {
+  position: fixed;
+  bottom: 20px;
+
+  background: none;
+  box-shadow: none;
+
+  color: #000;
+  font-weight: bold;
+}

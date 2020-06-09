@@ -4,10 +4,13 @@
  */
 
 import './styles';
+import { Provider } from 'react-redux';
+import { store } from 'src/redux';
+import ReduxDemo from './reduxDemo';
 import Main from './main';
 import MobXDemo from './mobXDemo';
 
-const App = () => <><Main /><MobXDemo /></>;
+const App = () => <><Main /><MobXDemo /><Provider store={store}><ReduxDemo /></Provider></>;
 
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
 export default /* devblock:start */require('react-hot-loader/root').hot(App)

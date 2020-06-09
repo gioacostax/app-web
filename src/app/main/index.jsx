@@ -12,7 +12,7 @@ export default function Main() {
 
   const handleScroller = () => {
     window.scrollBy({
-      top: window.innerHeight,
+      top: window.scrollMaxY === window.scrollY ? -window.scrollMaxY : window.innerHeight,
       left: 0,
       behavior: 'smooth'
     });
@@ -25,7 +25,7 @@ export default function Main() {
         <ThumbsUp />
       </button>
       <button type="button" className="scroller" onClick={handleScroller}>
-        MobX Demo
+        Next
         <ArrowDownward />
       </button>
     </div>

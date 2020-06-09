@@ -5,8 +5,9 @@
 
 import './styles';
 import Main from './main';
+import MobXDemo from './mobXDemo';
 
-const App = () => <Main />;
+const App = () => <><Main /><MobXDemo /></>;
 
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
 export default /* devblock:start */require('react-hot-loader/root').hot(App)

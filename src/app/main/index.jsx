@@ -4,31 +4,30 @@
  */
 
 import './styles';
-import mobx, { api, counter } from 'src/mobx';
-import { DownloadTo, Clear } from 'blink/icons/the-icon-of';
+import { useState } from 'react';
+import { ThumbsUp, ArrowDownward } from 'blink/icons/the-icon-of';
 
 export default function Main() {
-  const getData = () => {
-    if (!api.loading) {
-      counter.add(1);
-      api.loadData('https://api.chucknorris.io/jokes/random')
-        .then() // Handle sucessful promise
-        .catch(); // Handle error promise
-    } else api.cancelLoadData();
+  const [count, setCount] = useState(0);
+
+  const handleScroller = () => {
+    window.scrollBy({
+      top: window.innerHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
   };
 
-  return mobx.useObserver(() => (
+  return (
     <div id="main">
-      <h1>Chuck Norris facts</h1>
-      <button type="button" onClick={getData}>
-        {
-          api.loading
-            ? <>LOADING...<Clear /></>
-            : <>LOAD FACT<DownloadTo /></>
-        }
+      <button type="button" onClick={() => setCount(count + 1)}>
+        {count} Likes
+        <ThumbsUp />
       </button>
-      <div className="fact">{api.data.value}</div>
-      <div className="store-msg">{`Count: ${counter.count} - API Msg: ${api.status}`}</div>
+      <button type="button" className="scroller" onClick={handleScroller}>
+        MobX Demo
+        <ArrowDownward />
+      </button>
     </div>
-  ));
+  );
 }

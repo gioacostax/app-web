@@ -11,61 +11,13 @@
   height: 100vh;
 }
 
-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+button.scroller {
+  position: absolute;
+  bottom: 20px;
 
-  height: 36px;
+  background: none;
+  box-shadow: none;
 
-  padding: 5px 12px;
-  background: #000;
-  border: 0;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px 1px #aaa;
-  transition: box-shadow 0.2s linear;
-
-  font-size: 12px;
-  font-family: inherit;
-  text-align: center;
-
-  color: #fff;
-
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: 0 2px 8px 4px #bbb;
-    transition: box-shadow 0.2s linear;
-  }
-
-  [icon] {
-    height: 1.3em;
-    margin-left: 5px;
-  }
-}
-
-h1 {
-  color: #444;
-}
-
-.fact {
-  max-width: 400px;
-
-  margin: 20px;
-  padding-left: 15px;
-
-  border-left: solid 3px rgb(252, 172, 0);
-
-  font-size: 1.2em;
-  line-height: 1.5em;
-
-  color: #555;
-}
-
-.store-msg {
-  width: 350px;
-
-  font-size: 0.7em;
-  text-align: center;
-  color: #888;
+  color: #000;
+  font-weight: bold;
 }

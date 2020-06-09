@@ -7,7 +7,7 @@ import './styles';
 import redux, { counter, api } from 'src/redux';
 import { DownloadTo, Clear } from 'blink/icons/the-icon-of';
 
-export default function Main() {
+export default function ReduxDemo() {
   const store = redux.useSelector((states) => states);
   const dispatch = redux.useDispatch();
 
@@ -21,7 +21,8 @@ export default function Main() {
   };
 
   return (
-    <div id="main">
+    <div id="redux-demo">
+      <h2>Redux Demo</h2>
       <h1>Chuck Norris facts</h1>
       <button type="button" onClick={getData}>
         {

@@ -5,28 +5,16 @@
 
 import './styles';
 import { useState } from 'react';
-import { ThumbsUp, ArrowDownward } from 'blink/icons/the-icon-of';
+import { ThumbsUp } from 'blink/icons/the-icon-of';
 
 export default function Main() {
   const [count, setCount] = useState(0);
-
-  const handleScroller = () => {
-    window.scrollBy({
-      top: window.scrollMaxY === window.scrollY ? -window.scrollMaxY : window.innerHeight,
-      left: 0,
-      behavior: 'smooth'
-    });
-  };
 
   return (
     <div id="main">
       <button type="button" onClick={() => setCount(count + 1)}>
         {count} Likes
         <ThumbsUp />
-      </button>
-      <button type="button" className="scroller" onClick={handleScroller}>
-        Next
-        <ArrowDownward />
       </button>
     </div>
   );

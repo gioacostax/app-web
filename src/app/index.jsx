@@ -6,6 +6,7 @@
 import './styles';
 import { Provider } from 'react-redux';
 import { store } from 'src/redux';
+import { Scroller } from 'src/components';
 import ReduxDemo from './reduxDemo';
 import Main from './main';
 import MobXDemo from './mobXDemo';
@@ -13,6 +14,7 @@ import Router from './router';
 
 const App = () => (
   <>
+    <Scroller />
     <Main />
     <MobXDemo />
     <Provider store={store}><ReduxDemo /></Provider>

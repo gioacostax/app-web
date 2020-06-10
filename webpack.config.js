@@ -196,6 +196,12 @@ module.exports = (env, argv) => {
 
     // Development config
     devServer: {
+      historyApiFallback: {
+        rewrites: [
+          // Github and Vercel uses by default 404.html TODO: Test
+          { from: /./, to: `${PACKAGE.app.start_url}404.html` }
+        ]
+      },
       clientLogLevel: 'warn',
       open: 'firefox developer edition',
       port: 3000,

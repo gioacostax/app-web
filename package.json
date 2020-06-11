@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "React Starter Kit",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --open",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint src --ext .js,.jsx",
     "lint:css": "stylelint 'src/**/*.{css,scss,sass}'",
     "build": "webpack --mode=production",
     "build:analyzer": "webpack-dashboard -- yarn build",
     "build:server": "yarn build && serve build",
+    "test": "yarn test:cypress:run",
+    "test:cypress:run": "yarn build:server & cypress run",
+    "server": "serve build",
     "deploy:vercel": "vercel"
   },
   "author": "Giorgio Acosta",
@@ -39,9 +42,11 @@
     "blink": "https://github.com/gioacostax/blink.git",
     "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.5.3",
+    "cypress": "^4.8.0",
     "error-overlay-webpack-plugin": "^0.4.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-cypress": "^2.11.1",
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.20.0",
@@ -108,14 +113,19 @@
     "parser": "babel-eslint",
     "extends": [
       "airbnb",
-      "airbnb/hooks"
+      "airbnb/hooks",
+      "plugin:cypress/recommended"
+    ],
+    "plugins": [
+      "cypress"
     ],
     "ignorePatterns": [
       "**/build",
       "**/node_modules"
     ],
     "env": {
-      "browser": true
+      "browser": true,
+      "cypress/globals": true
     },
     "globals": {
       "React": true

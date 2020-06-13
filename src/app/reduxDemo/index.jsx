@@ -4,6 +4,7 @@
  */
 
 import './styles';
+import React from 'react';
 import redux, { counter, api } from 'src/redux';
 import { DownloadTo, Clear } from 'blink/icons/the-icon-of';
 

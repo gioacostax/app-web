@@ -4,7 +4,7 @@
  */
 
 import './styles';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { ThumbsUp } from 'blink/icons/the-icon-of';
 
 export default function Main() {

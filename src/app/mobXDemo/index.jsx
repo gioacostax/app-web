@@ -4,6 +4,7 @@
  */
 
 import './styles';
+import React from 'react';
 import mobx, { api, counter } from 'src/mobx';
 import { DownloadTo, Clear } from 'blink/icons/the-icon-of';
 

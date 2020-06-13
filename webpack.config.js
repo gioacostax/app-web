@@ -121,11 +121,6 @@ module.exports = (env, argv) => {
         'process.env.NODE_ENV': DEV ? '"development"' : '"production"'
       }),
 
-      // Set global modules to avoid using 'import' every time
-      new webpack.ProvidePlugin({
-        React: DEV ? 'react' : 'preact/compat',
-      }),
-
       // Stylized in browser errors, it shows compiled babel source
       new ErrorOverlayPlugin(),
 

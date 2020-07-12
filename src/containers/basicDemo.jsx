@@ -3,15 +3,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles';
 import React, { useState } from 'react';
 import { ThumbsUp } from 'blink/icons/the-icon-of';
 
-export default function Main() {
+export default function BasicDemo() {
   const [count, setCount] = useState(0);
 
   return (
-    <div id="main">
+    <div className="container">
       <button type="button" onClick={() => setCount(count + 1)}>
         {count} Likes
         <ThumbsUp />

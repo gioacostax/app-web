@@ -5,7 +5,7 @@
 
 import './styles';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Redux } from 'src/containers';
 
-ReactDOM.render(<Redux />, document.getElementById('app'));
+export default React.memo(function Quote({ value }) {
+  return (<div className="quote">{value}</div>);
+});

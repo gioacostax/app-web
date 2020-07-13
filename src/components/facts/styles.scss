@@ -3,14 +3,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#redux-demo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
 .fact {
   max-width: 400px;
 
@@ -23,12 +15,4 @@
   line-height: 1.5em;
 
   color: #555;
-}
-
-.store-msg {
-  width: 350px;
-
-  font-size: 0.7em;
-  text-align: center;
-  color: #888;
 }

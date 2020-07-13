@@ -7,5 +7,5 @@ import './styles';
 import React from 'react';
 
 export default React.memo(function Quote({ value }) {
-  return (<div className="fact">{value}</div>);
+  return (<div className="quote">{value}</div>);
 });

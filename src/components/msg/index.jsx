@@ -7,6 +7,5 @@ import './styles';
 import React from 'react';
 
 export default React.memo(function Msg({ countValue, statusValue }) {
-  return (<div className="msg">{`Count: ${countValue} - API Status: ${statusValue}`}</div>
-  );
+  return <div className="msg">{`Count: ${countValue} - API Status: ${statusValue}`}</div>;
 });

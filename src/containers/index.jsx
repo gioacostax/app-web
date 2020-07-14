@@ -11,10 +11,12 @@ import redux, { store } from 'src/redux';
 import ReduxDemo from './reduxDemo.jsx';
 import BasicDemo from './basicDemo.jsx';
 import MobXDemo from './mobXDemo.jsx';
+import RouterDemo from './routerDemo.jsx';
 
 const BasicContainer = () => <BasicDemo />;
 const ReduxContainer = () => <redux.Provider store={store}><ReduxDemo /></redux.Provider>;
 const MobXContainer = () => <MobXDemo />;
+const RouterContainer = () => <RouterDemo />;
 
 export const Basic = /* devblock:start */require('react-hot-loader/root').hot(BasicContainer)
 || /* devblock:end */BasicContainer;
@@ -22,3 +24,5 @@ export const Redux = /* devblock:start */require('react-hot-loader/root').hot(Re
 || /* devblock:end */ReduxContainer;
 export const MobX = /* devblock:start */require('react-hot-loader/root').hot(MobXContainer)
 || /* devblock:end */MobXContainer;
+export const Router = /* devblock:start */require('react-hot-loader/root').hot(RouterContainer)
+|| /* devblock:end */RouterContainer;

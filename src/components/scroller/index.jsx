@@ -4,8 +4,8 @@
  */
 
 import './styles';
+import { ArrowDownward } from '@gioacostax/icons';
 import React from 'react';
-import { ArrowDownward } from 'blink/icons/the-icon-of';
 
 export default function Scroller() {
   const handleScroller = () => {

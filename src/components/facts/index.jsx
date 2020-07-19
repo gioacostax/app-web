@@ -4,8 +4,8 @@
  */
 
 import React from 'react';
+import { DownloadTo, Clear } from '@gioacostax/icons';
 import { Quote, Msg } from 'src/components';
-import { DownloadTo, Clear } from 'blink/icons/the-icon-of';
 
 export default function Facts({ name, title, api, counter }) {
   const getData = () => {

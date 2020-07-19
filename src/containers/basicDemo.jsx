@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { ThumbsUp } from 'blink/icons/the-icon-of';
+import { ThumbsUp } from '@gioacostax/icons';
 
 export default function BasicDemo() {
   const [count, setCount] = useState(0);

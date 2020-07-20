@@ -3,10 +3,4 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
+export hotLoader from './hotLoader';

@@ -1,6 +1,6 @@
 # React Starter Kit · [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-React Starter Kit is a fully configured base template for developing web applications in React. Redux and MobX have also been integrated.
+React Starter Kit is a fully configured base template for developing web applications in React. Redux, MobX and Router have also been integrated.
 
 ## Getting Started
 

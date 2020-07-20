@@ -121,11 +121,6 @@ module.exports = (env, argv) => {
         'process.env.NODE_ENV': DEV ? '"development"' : '"production"'
       }),
 
-      // Set global modules to avoid using 'import' every time
-      new webpack.ProvidePlugin({
-        React: DEV ? 'react' : 'preact/compat',
-      }),
-
       // Stylized in browser errors, it shows compiled babel source
       new ErrorOverlayPlugin(),
 
@@ -196,6 +191,12 @@ module.exports = (env, argv) => {
 
     // Development config
     devServer: {
+      historyApiFallback: {
+        rewrites: [
+          // Github and Vercel uses by default 404.html TODO: Test
+          { from: /./, to: `${PACKAGE.app.start_url}404.html` }
+        ]
+      },
       clientLogLevel: 'warn',
       port: 3000,
       hot: true, // Avoid reloading page

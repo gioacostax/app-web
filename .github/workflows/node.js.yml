@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: 14.x
     - name: Install dependencies
-      run: yarn install --no-lockfile
+      run: yarn install
     - name: Build project
       run: yarn build
 
@@ -34,7 +34,7 @@ jobs:
       with:
         node-version: 14.x
     - name: Install dependencies
-      run: yarn install --no-lockfile
+      run: yarn install
     - name: Lint project
       run: yarn lint
 

@@ -5,7 +5,7 @@
 
 import './styles';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router } from 'src/containers';
 
-ReactDOM.render(<Router />, document.getElementById('app'));
+export default React.memo(function Msg({ countValue, statusValue }) {
+  return <div className="msg">{`Count: ${countValue} - API Status: ${statusValue}`}</div>;
+});

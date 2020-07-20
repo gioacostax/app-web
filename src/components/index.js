@@ -4,3 +4,7 @@
  */
 
 export Scroller from './scroller';
+export Facts from './facts';
+export Quote from './quote';
+export Msg from './msg';
+export Menu from './menu';

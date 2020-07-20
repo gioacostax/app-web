@@ -3,23 +3,26 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-describe('Component: <Main />', () => {
+describe('Container: <BasicDemo />', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5000');
+    cy.get('.menu>a')
+      .eq(0)
+      .click();
   });
 
   it('Should display a button with the text "0 Likes<ThumbsUp />"', () => {
-    cy.get('#main')
+    cy.get('.container')
       .find('button')
       .should('have.text', '0 Likes');
   });
 
   it('Should click the button and update the text to "1 Likes<ThumbsUp />"', () => {
-    cy.get('#main')
+    cy.get('.container')
       .find('button')
       .click();
 
-    cy.get('#main')
+    cy.get('.container')
       .find('button')
       .should('have.text', '1 Likes');
   });

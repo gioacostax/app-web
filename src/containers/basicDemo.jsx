@@ -5,16 +5,26 @@
 
 import React, { useState } from 'react';
 import { ThumbsUp } from '@gioacostax/icons';
+import { Button } from 'src/components';
+
+const styles = {
+  display: 'flex',
+  'flex-direction': 'column',
+  'align-items': 'center',
+  'justify-content': 'center',
+  height: '100vh',
+  flex: 1
+};
 
 export default function BasicDemo() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="container">
-      <button type="button" onClick={() => setCount(count + 1)}>
+    <div style={{ ...styles }}>
+      <Button onClick={() => setCount(count + 1)}>
         {count} Likes
         <ThumbsUp />
-      </button>
+      </Button>
     </div>
   );
 }

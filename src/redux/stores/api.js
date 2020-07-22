@@ -3,7 +3,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/* Actions types */
+/* Actions Types */
 const FETCH_DATA = 'API.FETCH_DATA';
 const SET_DATA = 'API.SET_DATA';
 const STOP = 'API.STOP';

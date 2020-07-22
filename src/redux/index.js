@@ -6,10 +6,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import * as redux from 'react-redux';
-import reducers from 'src/redux/reducers';
+import stores from './stores';
 
 const store = createStore(
-  reducers,
+  stores,
   applyMiddleware(
     ReduxThunk
     /* devblock:start */
@@ -22,12 +22,12 @@ const store = createStore(
 /* devblock:start */
 /* eslint global-require: 0 */
 if (module.hot) {
-  module.hot.accept('src/redux/reducers/index', () => {
-    store.replaceReducer(require('src/redux/reducers/index').default);
+  module.hot.accept('./stores/index', () => {
+    store.replaceReducer(require('./stores/index').default);
   });
 }
 /* devblock:end */
 
 export { store };
-export * from 'src/redux/reducers';
+export * from './stores';
 export default redux;

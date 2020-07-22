@@ -3,9 +3,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import './styles';
 import React from 'react';
 import { DownloadTo, Clear } from '@gioacostax/icons';
-import { Quote, Msg } from 'src/components';
+import { Quote, Msg, Button } from 'src/components';
 
 export default function Facts({ name, title, api, counter }) {
   const getData = () => {
@@ -19,10 +20,10 @@ export default function Facts({ name, title, api, counter }) {
   };
 
   return (
-    <div className="container">
+    <div className="container facts">
       <h2>{name}</h2>
       <h1>{title}</h1>
-      <button type="button" onClick={getData}>
+      <Button onClick={getData}>
         {api.loading ? (
           <>
             LOADING...
@@ -34,7 +35,7 @@ export default function Facts({ name, title, api, counter }) {
             <DownloadTo />
           </>
         )}
-      </button>
+      </Button>
       <Quote value={api.value} />
       <Msg countValue={counter.value} statusValue={api.status} />
     </div>

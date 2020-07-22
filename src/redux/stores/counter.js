@@ -3,7 +3,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/* Actions types */
+/* Actions Types */
 const ADD = 'COUNTER.ADD';
 const REMOVE = 'COUNTER.REMOVE';
 

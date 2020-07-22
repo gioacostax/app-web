@@ -7,12 +7,9 @@
 import 'mobx-react-lite/batchingForReactDom';
 import * as mobx from 'mobx-react-lite';
 
-// stores
-import counter from './stores/counter';
-import api from './stores/api';
+// Stores
+export counter from './stores/counter';
+export api from './stores/api';
 
+// Export mobx-react-lite tools as default
 export default mobx;
-export {
-  counter,
-  api
-};

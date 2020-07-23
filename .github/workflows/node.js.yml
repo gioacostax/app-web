@@ -6,22 +6,6 @@ name: ReactKit
 on: [push, pull_request]
 
 jobs:
-  build:
-    name: Build
-    
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-    - name: Install dependencies
-      run: yarn install
-    - name: Build project
-      run: yarn build
-
   lint:
     name: Lint
     
@@ -37,26 +21,3 @@ jobs:
       run: yarn install
     - name: Lint project
       run: yarn lint
-
-  test:
-    name: Test E2E on Chrome
-    
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-    - name: Install dependencies
-      run: yarn install
-    - name: Build project
-      run: yarn build
-    - name: Cypress run
-      uses: cypress-io/github-action@v1
-      with:
-        install: false
-        start: yarn server
-        browser: chrome
-        wait-on: 'http://localhost:5000'

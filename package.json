@@ -23,6 +23,8 @@
     "url": "https://github.com:gioacostax/react-kit.git"
   },
   "app": {
+    "title": "App",
+    "description": "React Starter Kit.",
     "start_url": "/",
     "src_alias": "src",
     "static_dir": "src/static",
@@ -43,7 +45,7 @@
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^6.0.3",
     "css-loader": "^3.6.0",
-    "cypress": "^4.10.0",
+    "cypress": "^4.11.0",
     "error-overlay-webpack-plugin": "^0.4.1",
     "eslint": "^7.5.0",
     "eslint-config-airbnb": "^18.2.0",
@@ -79,7 +81,7 @@
     "stylelint-config-sass-guidelines": "^7.0.0",
     "stylelint-scss": "^3.18.0",
     "terser-webpack-plugin": "^3.0.7",
-    "vercel": "^19.1.2",
+    "vercel": "^19.2.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dashboard": "^3.2.0",

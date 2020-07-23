@@ -8,4 +8,4 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'src/containers';
 
-ReactDOM.render(<Router />, document.getElementById('app'));
+ReactDOM.render(<Router />, document.getElementById('r-app'));

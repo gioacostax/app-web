@@ -126,6 +126,8 @@ module.exports = (env, argv) => {
 
       // Configure and render HTML using a template.
       new HtmlPlugin({
+        title: PACKAGE.app.title,
+        description: PACKAGE.app.description,
         path: DEV ? '/' : PACKAGE.app.start_url,
         template: PACKAGE.app.index_html,
         minify: { collapseWhitespace: true },

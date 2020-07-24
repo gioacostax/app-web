@@ -5,7 +5,7 @@
 
 import './styles';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router } from 'src/containers';
 
-ReactDOM.render(<Router />, document.getElementById('r-app'));
+export default React.memo(function Quote({ value }) {
+  return <div className="quote">{value}</div>;
+});

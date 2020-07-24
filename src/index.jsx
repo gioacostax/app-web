@@ -3,9 +3,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import './styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router } from 'src/containers';
 
-ReactDOM.render(<Router />, document.getElementById('r-app'));
+ReactDOM.render(<>🤩</>, document.getElementById('r-app'));

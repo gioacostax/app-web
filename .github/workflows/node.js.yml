@@ -21,3 +21,35 @@ jobs:
       run: yarn install
     - name: Lint project
       run: yarn lint
+
+  test-ubuntu:
+    name: Test Ubuntu
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Install dependencies
+      run: yarn install
+    - name: Test
+      run: yarn test
+
+  test-mac:
+    name: Test macOS
+    
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Install dependencies
+      run: yarn install
+    - name: Test
+      run: yarn test

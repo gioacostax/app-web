@@ -6,13 +6,12 @@ Create React App from personale template (gioacostax/react-kit)
 
 ```bash
 # Get the latest source
-git clone https://github.com/gioacostax/react-kit.git <myproject>
+yarn create @gioacostax/react-app <myproject>
+
+# Follow instructions
 
 # Change directory
 cd <myproject>
-
-# Install dependencies
-yarn
 
 # Start development server
 yarn start

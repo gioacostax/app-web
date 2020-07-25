@@ -1,10 +1,10 @@
 {
-  "name": "@gioacostax/create-react-app",
-  "version": "1.0.0",
+  "name": "@gioacostax/create-react-kit",
+  "version": "1.2.0",
   "description": "Create React App",
   "scripts": {
     "lint": "eslint . --ext .js,.jsx",
-    "test": "node index.js app"
+    "test": "node index.js app --default && rm -rf app"
   },
   "author": "Giorgio Acosta",
   "license": "MIT",
@@ -12,9 +12,20 @@
     "type": "git",
     "url": "https://github.com:gioacostax/react-kit.git"
   },
+  "engines": {
+    "node": ">=10"
+  },
+  "files": [
+    "index.js"
+  ],
+  "bin": {
+    "create-react-kit": "./index.js"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "commander": "^6.0.0",
+    "cross-spawn": "^7.0.3",
+    "inquirer": "^7.3.3",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {

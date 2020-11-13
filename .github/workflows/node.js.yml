@@ -6,22 +6,6 @@ name: ReactKit
 on: [push, pull_request]
 
 jobs:
-  build:
-    name: Build
-    
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-    - name: Install dependencies
-      run: yarn install
-    - name: Build project
-      run: yarn build
-
   lint:
     name: Lint
     
@@ -38,8 +22,8 @@ jobs:
     - name: Lint project
       run: yarn lint
 
-  test:
-    name: Test E2E on Chrome
+  test-ubuntu:
+    name: Test Ubuntu
     
     runs-on: ubuntu-latest
 
@@ -51,12 +35,21 @@ jobs:
         node-version: 14.x
     - name: Install dependencies
       run: yarn install
-    - name: Build project
-      run: yarn build
-    - name: Cypress run
-      uses: cypress-io/github-action@v1
+    - name: Test
+      run: yarn test
+
+  test-mac:
+    name: Test macOS
+    
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
       with:
-        install: false
-        start: yarn server
-        browser: chrome
-        wait-on: 'http://localhost:5000'
+        node-version: 14.x
+    - name: Install dependencies
+      run: yarn install
+    - name: Test
+      run: yarn test

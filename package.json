@@ -1,20 +1,10 @@
 {
-  "name": "react-kit",
-  "version": "1.0.0",
-  "description": "React Starter Kit",
+  "name": "@gioacostax/create-react-kit",
+  "version": "1.2.0",
+  "description": "Create React App",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "lint": "yarn lint:js && yarn lint:css",
-    "lint:js": "eslint src --ext .js,.jsx",
-    "lint:css": "stylelint 'src/**/*.{css,scss,sass}'",
-    "build": "webpack --mode=production",
-    "build:analyzer": "webpack-dashboard -- yarn build",
-    "build:server": "yarn build && yarn server",
-    "test": "yarn test:cypress:run",
-    "test:cypress:run": "yarn build && yarn server & cypress run",
-    "test:cypress:open": "yarn build && yarn server & cypress open",
-    "server": "serve build",
-    "deploy:vercel": "vercel"
+    "lint": "eslint . --ext .js,.jsx",
+    "test": "node index.js app --default && rm -rf app"
   },
   "author": "Giorgio Acosta",
   "license": "MIT",
@@ -22,112 +12,36 @@
     "type": "git",
     "url": "https://github.com:gioacostax/react-kit.git"
   },
-  "app": {
-    "start_url": "/",
-    "src_alias": "src",
-    "static_dir": "src/static",
-    "index_html": "src/index.ejs",
-    "main_js": "src/index.jsx"
+  "engines": {
+    "node": ">=10"
+  },
+  "files": [
+    "index.js"
+  ],
+  "bin": {
+    "create-react-kit": "./index.js"
   },
   "dependencies": {
-    "@babel/core": "^7.10.5",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-proposal-decorators": "^7.10.5",
-    "@babel/plugin-proposal-export-default-from": "^7.10.4",
-    "@babel/preset-react": "^7.10.4",
-    "@gioacostax/icons": "^1.0.0",
-    "@hot-loader/react-dom": "^16.13.0",
-    "@types/react": "^16.9.43",
-    "autoprefixer": "^9.8.5",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.1.0",
-    "copy-webpack-plugin": "^6.0.3",
-    "css-loader": "^3.6.0",
-    "cypress": "^4.10.0",
-    "error-overlay-webpack-plugin": "^0.4.1",
+    "chalk": "^4.1.0",
+    "commander": "^6.0.0",
+    "cross-spawn": "^7.0.3",
+    "inquirer": "^7.3.3",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
     "eslint": "^7.5.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-plugin-cypress": "^2.11.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^4.0.8",
-    "file-loader": "^6.0.0",
-    "html-webpack-plugin": "^4.3.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "mobx": "^5.15.4",
-    "mobx-react": "^6.2.2",
-    "mobx-react-lite": "^2.0.7",
-    "node-sass": "^4.14.1",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "postcss-loader": "^3.0.0",
-    "preact": "^10.4.6",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-hot-loader": "^4.12.21",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "rimraf": "^3.0.2",
-    "sass-loader": "^9.0.2",
-    "script-ext-html-webpack-plugin": "^2.1.4",
-    "serve": "^11.3.2",
-    "style-loader": "^1.2.1",
-    "stylelint": "^13.6.1",
-    "stylelint-config-sass-guidelines": "^7.0.0",
-    "stylelint-scss": "^3.18.0",
-    "terser-webpack-plugin": "^3.0.7",
-    "vercel": "^19.1.2",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dashboard": "^3.2.0",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-remove-block-loader": "^1.0.2"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-export-default-from",
-      [
-        "@babel/plugin-proposal-decorators",
-        {
-          "legacy": true
-        }
-      ],
-      [
-        "@babel/plugin-proposal-class-properties",
-        {
-          "loose": true
-        }
-      ]
-    ]
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
     "extends": [
-      "airbnb",
-      "airbnb/hooks",
-      "plugin:cypress/recommended"
-    ],
-    "plugins": [
-      "cypress"
+      "airbnb-base"
     ],
     "ignorePatterns": [
-      "**/build",
       "**/node_modules"
     ],
     "env": {
-      "browser": true,
-      "cypress/globals": true
+      "node": true
     },
     "rules": {
       "no-console": 0,
@@ -143,39 +57,7 @@
           }
         }
       ],
-      "prefer-arrow-callback": 0,
-      "import/extensions": 0,
-      "import/no-unresolved": [
-        2,
-        {
-          "ignore": [
-            "src/",
-            "^./styles"
-          ]
-        }
-      ],
-      "react/prop-types": 0,
-      "react/jsx-one-expression-per-line": 0,
-      "jsx-a11y/no-noninteractive-element-interactions": [
-        "error",
-        {
-          "handlers": [
-            "onClick"
-          ]
-        }
-      ]
-    }
-  },
-  "stylelint": {
-    "extends": "stylelint-config-sass-guidelines",
-    "plugins": [
-      "stylelint-scss"
-    ],
-    "rules": {
-      "max-nesting-depth": 4,
-      "selector-max-id": null,
-      "order/properties-alphabetical-order": null,
-      "selector-no-qualifying-type": null
+      "prefer-arrow-callback": 0
     }
   }
 }

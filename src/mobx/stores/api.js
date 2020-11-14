@@ -21,7 +21,7 @@ export default new class Database {
       this.error = null;
       const raw = await fetch(url, { signal: this.controller.signal });
       const json = await raw.json();
-      return runInAction('API.SET_DATA', () => {
+      return runInAction(() => {
         this.data = json;
         this.loading = false;
         this.status = 'Data loaded';
@@ -29,7 +29,7 @@ export default new class Database {
     } catch (error) {
       // If the error is not due to cancellation
       if (error.code !== 20) {
-        return runInAction('API.STOP', () => {
+        return runInAction(() => {
           this.status = error.message;
           this.loading = false;
           this.error = error;

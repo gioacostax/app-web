@@ -4,11 +4,11 @@
  */
 
 import React from 'react';
-import mobx, { counter, api } from 'src/mobx';
+import observer, { counter, api } from 'src/mobx';
 import { Facts } from 'src/components';
 
-export default function MobXDemo() {
-  return mobx.useObserver(() => (
+export default observer(function MobXDemo() {
+  return (
     <Facts
       name="MobX Demo"
       title="Chuck Norris Facts"
@@ -24,5 +24,5 @@ export default function MobXDemo() {
         status: api.status
       }}
     />
-  ));
-}
+  );
+});

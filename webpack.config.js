@@ -10,13 +10,14 @@ const rimraf = require('rimraf');
 
 // Webpack Plugins
 const HtmlPlugin = require('html-webpack-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const ScriptExtHtmlPlugin = require('script-ext-html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 // Global variables
 const PACKAGE = JSON.parse(fs.readFileSync('package.json', 'utf8'));
@@ -31,32 +32,17 @@ module.exports = (env, argv) => {
   rimraf.sync(PATH_BUILD);
 
   return {
-    node: {
-      // Avoid injecting node functions
-      process: DEV
-    },
+    // Required for React-Refresh
+    node: DEV ? { global: true, } : false,
 
-    entry: {
-      main: [
-        ...DEV ? ['react-hot-loader/patch'] : [], // Hot patch
-        PACKAGE.app.main_js
-      ],
-
-      // No tengo claro por qué toca especificar un modulo de entrada
-      // para que exporte un chunk por separado en esta versión básica.
-      // En MOBX no hace falta esta linea a continuación.
-      vendors: 'preact/compat'
-    },
+    entry: PACKAGE.app.main_js,
 
     output: {
       // Build Folder + Start URL (optional*)
       path: `${PATH_BUILD}${PACKAGE.app.start_url}`,
 
-      // Chunk files format
-      chunkFilename: 'js/[name].[chunkhash:6].js',
-
       // Entrypoint filename
-      filename: 'js/[name].[hash:6].js',
+      filename: 'js/[name].[chunkhash:6].js',
 
       // Ref final url in html and css bundles if necessary
       publicPath: DEV ? '/' : PACKAGE.app.start_url
@@ -69,9 +55,7 @@ module.exports = (env, argv) => {
 
         // Preact reduce react and react-dom bundle size
         react: DEV ? 'react' : 'preact/compat',
-
-        // HMR Hook Support and reduce react-dom bundle size
-        'react-dom': DEV ? '@hot-loader/react-dom' : 'preact/compat'
+        'react-dom': DEV ? 'react-dom' : 'preact/compat'
       },
 
       // Avoid use extensiones importing modules
@@ -89,7 +73,12 @@ module.exports = (env, argv) => {
               loader: 'webpack-remove-block-loader',
               options: { active: (!DEV), }
             },
-            { loader: 'babel-loader' }
+            {
+              loader: 'babel-loader',
+              options: {
+                plugins: DEV ? ['react-refresh/babel'] : [],
+              },
+            }
           ]
         },
         {
@@ -135,7 +124,7 @@ module.exports = (env, argv) => {
       }),
 
       // Add Attr in the bundle tag
-      new ScriptExtHtmlWebpackPlugin({
+      new ScriptExtHtmlPlugin({
         defaultAttribute: 'async'
       }),
 
@@ -151,8 +140,15 @@ module.exports = (env, argv) => {
         ],
       }),
 
-      // Production plugins
-      ...DEV ? [] : [
+      // Conditional plugins
+      ...DEV ? [
+        // HMR
+        new ReactRefreshPlugin(),
+        // Required for React-Refresh
+        new webpack.ProvidePlugin({
+          process: 'process/browser',
+        }),
+      ] : [
         // Verbose build
         new DashboardPlugin(),
 
@@ -164,13 +160,13 @@ module.exports = (env, argv) => {
     ],
 
     optimization: {
-      // Merge share modules in a single file.
+      // Merge shared modules in a single file.
       splitChunks: {
         cacheGroups: {
           vendors: {
             name: 'vendors',
             test: /[\\/]node_modules[\\/]/,
-            chunks: 'all',
+            chunks: 'all'
           }
         }
       },
@@ -178,7 +174,7 @@ module.exports = (env, argv) => {
       // Custom minimizer
       minimizer: [
         new TerserJSPlugin({}),
-        new OptimizeCSSAssetsPlugin({})
+        // new OptimizeCSSAssetsPlugin({})
       ]
     },
 

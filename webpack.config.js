@@ -15,8 +15,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 // Global variables
@@ -110,9 +109,6 @@ module.exports = (env, argv) => {
         'process.env.NODE_ENV': DEV ? '"development"' : '"production"'
       }),
 
-      // Stylized in browser errors, it shows compiled babel source
-      new ErrorOverlayPlugin(),
-
       // Configure and render HTML using a template.
       new HtmlPlugin({
         title: PACKAGE.app.title,
@@ -144,6 +140,7 @@ module.exports = (env, argv) => {
       ...DEV ? [
         // HMR
         new ReactRefreshPlugin(),
+
         // Required for React-Refresh
         new webpack.ProvidePlugin({
           process: 'process/browser',
@@ -173,8 +170,8 @@ module.exports = (env, argv) => {
 
       // Custom minimizer
       minimizer: [
-        new TerserJSPlugin({}),
-        // new OptimizeCSSAssetsPlugin({})
+        new TerserJSPlugin(),
+        new CssMinimizerPlugin()
       ]
     },
 
@@ -183,12 +180,17 @@ module.exports = (env, argv) => {
 
     // Build log
     stats: {
-      modules: false,
-      children: false
+      modules: false
     },
 
     // Development config
     devServer: {
+      stats: {
+        modules: false,
+        assets: false,
+        entrypoints: false,
+        colors: true
+      },
       historyApiFallback: {
         rewrites: [
           // Github and Vercel uses by default 404.html TODO: Test
@@ -199,11 +201,6 @@ module.exports = (env, argv) => {
       port: 3000,
       hot: true, // Avoid reloading page
       host: '0.0.0.0' // External preview
-    },
-
-    // Performance warnings
-    performance: {
-      hints: false
     }
   };
 };

@@ -17,6 +17,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 // Global variables
 const PACKAGE = JSON.parse(fs.readFileSync('package.json', 'utf8'));
@@ -104,6 +105,9 @@ module.exports = (env, argv) => {
     },
 
     plugins: [
+      // Show errors in webpack console
+      new ESLintPlugin({ extensions: ['js', 'jsx', 'css', 'scss', 'sass'] }),
+
       // Define ENV NODE_ENV as 'production' or 'development' for third party modules
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': DEV ? '"development"' : '"production"'
@@ -115,7 +119,6 @@ module.exports = (env, argv) => {
         description: PACKAGE.app.description,
         path: DEV ? '/' : PACKAGE.app.start_url,
         template: PACKAGE.app.index_html,
-        minify: { collapseWhitespace: true },
         inject: true
       }),
 
@@ -151,7 +154,7 @@ module.exports = (env, argv) => {
 
         // Extract styles in a single file
         new MiniCssExtractPlugin({
-          filename: 'css/[name].[contenthash:6].css'
+          filename: 'css/[name].[chunkhash:6].css'
         })
       ]
     ],

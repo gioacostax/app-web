@@ -1,4 +1,4 @@
-# React Starter Kit · [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+# React Starter Kit · [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![ReactKit](https://github.com/gioacostax/react-kit/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/gioacostax/react-kit/actions/workflows/node.js.yml)
 
 React Starter Kit is a fully configured base template for developing web applications in React. Redux, MobX and Router have also been integrated.
 

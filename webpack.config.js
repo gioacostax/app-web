@@ -106,7 +106,7 @@ module.exports = (env, argv) => {
 
     plugins: [
       // Show errors in webpack console
-      new ESLintPlugin({ extensions: ['js', 'jsx', 'css', 'scss', 'sass'] }),
+      new ESLintPlugin({ extensions: ['js', 'jsx'] }),
 
       // Define ENV NODE_ENV as 'production' or 'development' for third party modules
       new webpack.DefinePlugin({

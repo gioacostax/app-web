@@ -11,7 +11,6 @@ import redux, { store } from 'src/redux';
 import ReduxContainer from './reduxDemo.jsx';
 
 export Basic from './basicDemo.jsx';
-export MobX from './mobXDemo.jsx';
 export Router from './routerDemo.jsx';
 
 const ReduxProvider = () => <redux.Provider store={store}><ReduxContainer /></redux.Provider>;

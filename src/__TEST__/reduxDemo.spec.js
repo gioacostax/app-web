@@ -7,7 +7,7 @@ describe('Container: <ReduxDemo />', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5000');
     cy.get('.menu>a')
-      .eq(2)
+      .eq(1) // Select Redux
       .click();
   });
 

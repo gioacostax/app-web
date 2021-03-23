@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { HashRouter, Route, Switch, Link, Redirect } from 'react-router-dom';
-import { Basic, Redux, MobX } from 'src/containers';
+import { Basic, Redux } from 'src/containers';
 import { Menu } from 'src/components';
 
 export default function Router() {
@@ -14,12 +14,10 @@ export default function Router() {
       <div style={{ display: 'flex' }}>
         <Menu>
           <Link replace to="/">BASIC</Link>
-          <Link replace to="/mobx">MOBX</Link>
           <Link replace to="/redux">REDUX</Link>
         </Menu>
         <Switch>
           <Route exact path="/" component={Basic} />
-          <Route exact path="/mobx" component={MobX} />
           <Route exact path="/redux" component={Redux} />
           <Redirect from="*" to="/404.html" />
         </Switch>

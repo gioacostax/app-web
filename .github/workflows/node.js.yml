@@ -54,7 +54,7 @@ jobs:
     - name: Build project
       run: yarn build
     - name: Cypress run
-      uses: cypress-io/github-action@v1
+      uses: cypress-io/github-action@v2
       with:
         install: false
         start: yarn server
